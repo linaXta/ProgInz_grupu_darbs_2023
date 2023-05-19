@@ -24,7 +24,6 @@ import lombok.ToString;
 
 @Table(name = "person_table")
 @Entity
-@MappedSuperclass
 @Getter
 @Setter
 @NoArgsConstructor
@@ -65,7 +64,6 @@ public class Person {
 			@NotNull @Pattern(regexp = "[A-ZĀĢČĒĪĶĻŅŠŪŽ]{1}[a-zāģčēīķļņšūž\\ ]+") @Size(min = 3, max = 15) String surname,
 			@NotNull @Pattern(regexp = "[0-9]{6}-[0-9]{5}+", message = "Neatbilstošs personas kods") @Size(min = 12, max = 12) String personacode,
 			User user) {
-		super();
 		this.name = name;
 		this.surname = surname;
 		this.personacode = personacode;

@@ -45,7 +45,6 @@ public class User {
 	
 
 	public User(@NotNull String password, @NotNull @Email String email) {
-		super();
 		this.password = password;
 		this.email = email;
 	}
