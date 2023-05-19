@@ -7,7 +7,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.MappedSuperclass;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
@@ -50,5 +52,24 @@ public class Person {
 	@Pattern(regexp = "[0-9]{6}-[0-9]{5}+" , message = "Neatbilstošs personas kods")
 	@Size(min = 12, max = 12)
 	private String personacode;
+	
+	@OneToOne
+	@JoinColumn(name = "Idu")
+	private User user;
+
+	public Person(
+			@NotNull @Pattern(regexp = "[A-ZĀĢČĒĪĶĻŅŠŪŽ]{1}[a-zāģčēīķļņšūž\\ ]+") @Size(min = 3, max = 15) String name,
+			@NotNull @Pattern(regexp = "[A-ZĀĢČĒĪĶĻŅŠŪŽ]{1}[a-zāģčēīķļņšūž\\ ]+") @Size(min = 3, max = 15) String surname,
+			@NotNull @Pattern(regexp = "[0-9]{6}-[0-9]{5}+", message = "Neatbilstošs personas kods") @Size(min = 12, max = 12) String personacode,
+			User user) {
+		super();
+		this.name = name;
+		this.surname = surname;
+		this.personacode = personacode;
+		this.user = user;
+	}
+	
+	
+	
 	
 }
