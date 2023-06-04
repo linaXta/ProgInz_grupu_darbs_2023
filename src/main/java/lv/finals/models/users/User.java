@@ -39,16 +39,13 @@ public class User {
 	@NotNull
 	@Email
 	private String email;
-	
-	@OneToOne(mappedBy = "user")
-	private Person person;
-	
 
 	public User(@NotNull String password, @NotNull @Email String email) {
 		this.password = password;
 		this.email = email;
 	}
 	
-	
+	@OneToOne(mappedBy = "user")
+	private Person person;
 	
 }

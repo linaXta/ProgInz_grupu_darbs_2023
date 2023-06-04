@@ -25,6 +25,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import lv.finals.models.users.Student;
 
 @Table(name = "course_table")
 @Entity
@@ -51,12 +52,23 @@ public class Course {
 	@Max(value = 20)
 	private int creditPoint;
 	
-	
+	@ManyToMany(mappedBy = "debtCourses")
+	private Collection<Student> debtStudents = new ArrayList<>();
 	
 	public Course(String title, int creditPoint) {
 		this.title = title;
 		this.creditPoint = creditPoint;
 		
+	}
+	
+	public void addStudent(Student student) {
+		if(!debtStudents.contains(student)) {
+			debtStudents.add(student);
+		}
+	}
+	
+	public void removeStudent(Student student) {
+		debtStudents.remove(student);
 	}
 	
 }
